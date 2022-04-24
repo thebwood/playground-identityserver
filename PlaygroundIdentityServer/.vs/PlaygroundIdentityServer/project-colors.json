@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "01d7c39a-1687-4d3c-bf59-4c7bfa8140e5": {
+      "ProjectGuid": "01d7c39a-1687-4d3c-bf59-4c7bfa8140e5",
+      "DisplayName": "IdentityServer.Server",
+      "ColorIndex": 0
+    },
+    "4fd445d3-34ec-4629-8e26-0ed35078eb70": {
+      "ProjectGuid": "4fd445d3-34ec-4629-8e26-0ed35078eb70",
+      "DisplayName": "IdentityServer.Server",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
