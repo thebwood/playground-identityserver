@@ -10,7 +10,37 @@
       "ProjectGuid": "4fd445d3-34ec-4629-8e26-0ed35078eb70",
       "DisplayName": "IdentityServer.Server",
       "ColorIndex": 1
+    },
+    "74bb24da-7579-451b-99bc-f57d401c08bd": {
+      "ProjectGuid": "74bb24da-7579-451b-99bc-f57d401c08bd",
+      "DisplayName": "IdentityServer.Infrastructure",
+      "ColorIndex": 2
+    },
+    "42b731a7-c172-4a86-a3b2-d1cd8d6bb46f": {
+      "ProjectGuid": "42b731a7-c172-4a86-a3b2-d1cd8d6bb46f",
+      "DisplayName": "IdentityServer.Core",
+      "ColorIndex": 3
+    },
+    "dd7bf120-b7e2-43aa-8a90-b5199dc5af79": {
+      "ProjectGuid": "dd7bf120-b7e2-43aa-8a90-b5199dc5af79",
+      "DisplayName": "IdentityServer.Server",
+      "ColorIndex": 4
+    },
+    "7abbbdd9-ee52-44b0-a479-89d12387fe01": {
+      "ProjectGuid": "7abbbdd9-ee52-44b0-a479-89d12387fe01",
+      "DisplayName": "People.Core",
+      "ColorIndex": 5
+    },
+    "4b392e3b-7ed9-4132-8188-38e387685854": {
+      "ProjectGuid": "4b392e3b-7ed9-4132-8188-38e387685854",
+      "DisplayName": "People.Infrastructure",
+      "ColorIndex": 6
+    },
+    "32d0906e-3773-4de4-b532-e107b864c053": {
+      "ProjectGuid": "32d0906e-3773-4de4-b532-e107b864c053",
+      "DisplayName": "People.API",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 8
 }
