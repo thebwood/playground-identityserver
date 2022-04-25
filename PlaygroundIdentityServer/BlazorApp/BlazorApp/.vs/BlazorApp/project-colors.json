@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2651f7c6-834a-4023-85f8-eea64241aa97": {
+      "ProjectGuid": "2651f7c6-834a-4023-85f8-eea64241aa97",
+      "DisplayName": "AddressManager.Blazor",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
