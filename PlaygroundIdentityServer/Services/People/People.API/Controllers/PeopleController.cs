@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Models;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace People.API.Controllers
 {
+    [Authorize("ClientIdPolicy")]
     [EnableCors("SiteCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]

@@ -1,10 +1,5 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using People.API.Extensions;
-using People.Core.Services;
-using People.Core.Services.Interfaces;
-using People.Infrastructure.Entities;
-using People.Infrastructure.Repositories;
-using People.Infrastructure.Repositories.Interfaces;
 
 var siteCorsPolicy = "SiteCorsPolicy";
 
@@ -18,6 +13,8 @@ ServiceExtensions.ConfigureCors(builder.Services, siteCorsPolicy);
 
 builder.Services.AddControllers();
 ServiceExtensions.AddDependencyInjection(builder.Services, builder.Configuration);
+
+ServiceExtensions.AddAuthenticationsAndAuthorizations(builder.Services);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,6 +34,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(siteCorsPolicy);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

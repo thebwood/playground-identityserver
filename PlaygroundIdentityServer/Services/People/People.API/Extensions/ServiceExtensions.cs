@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using People.Core.Services;
 using People.Core.Services.Interfaces;
 using People.Infrastructure.Entities;
@@ -22,6 +23,23 @@ namespace People.API.Extensions
                     }
                 )
             ); ;
+        }
+
+        public static void AddAuthenticationsAndAuthorizations(IServiceCollection services)
+        {
+            services.AddAuthentication("Bearer")
+                    .AddJwtBearer("Bearer", options =>
+                    {
+                        options.Authority = "https://localhost:5443";
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateAudience = false
+                        };
+                    });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "movieClient", "movies_mvc_client"));
+            });
         }
 
         public static void AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
