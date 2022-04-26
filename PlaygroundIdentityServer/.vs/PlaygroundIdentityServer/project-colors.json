@@ -65,7 +65,12 @@
       "ProjectGuid": "15943b20-8d6c-456b-b9f9-0e7394eb1eef",
       "DisplayName": "Playground.Common",
       "ColorIndex": 11
+    },
+    "1e392c1b-06c9-430d-971b-2132a5472fd9": {
+      "ProjectGuid": "1e392c1b-06c9-430d-971b-2132a5472fd9",
+      "DisplayName": "IdentityServer.Infrastructure",
+      "ColorIndex": 12
     }
   },
-  "NextColorIndex": 12
+  "NextColorIndex": 13
 }

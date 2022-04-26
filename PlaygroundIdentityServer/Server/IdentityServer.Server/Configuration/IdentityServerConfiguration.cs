@@ -8,60 +8,58 @@ namespace IdentityServer.Server.Configuration
 {
     public class IdentityServerConfiguration
     {
-        public static IEnumerable<Client> Clients =>
-            new Client[]
+        public static IEnumerable<IdentityResource> IdentityResources =>
+            new IdentityResource[]
             {
-                   new Client
-                   {
-                        ClientId = "peopleClient",
-                        AllowedGrantTypes = GrantTypes.ClientCredentials,
-                        ClientSecrets =
-                        {
-                            new Secret("peopleSecret".Sha256())
-                        },
-                        AllowedScopes = { "peopleAPI" }
-                   }
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+                new IdentityResource
+                {
+                    Name = "role",
+                    UserClaims = new List<string> { "role" }
+                }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
-           new ApiScope[]
-           {
-               new ApiScope("peopleAPI", "People API")
-           };
-
+            new ApiScope[] { new ApiScope("PeopleAPI.read"), new ApiScope("PeopleAPI.write"), };
         public static IEnumerable<ApiResource> ApiResources =>
-          new ApiResource[]
-          {
-               //new ApiResource("movieAPI", "Movie API")
-          };
-
-        public static IEnumerable<IdentityResource> IdentityResources =>
-          new IdentityResource[]
-          {
-              new IdentityResources.OpenId(),
-              new IdentityResources.Profile(),
-              new IdentityResources.Address(),
-              new IdentityResources.Email(),
-              new IdentityResource(
-                    "roles",
-                    "Your role(s)",
-                    new List<string>() { "role" })
-          };
-
-        public static List<TestUser> TestUsers =>
-            new List<TestUser>
+            new ApiResource[]
             {
-                new TestUser
+                new ApiResource("PeopleAPI")
                 {
-                    SubjectId = "5BE86359-073C-434B-AD2D-A3932222DABE",
-                    Username = "test",
-                    Password = "swn",
-                    Claims = new List<Claim>
-                    {
-                        new Claim(JwtClaimTypes.GivenName, "mehmet"),
-                        new Claim(JwtClaimTypes.FamilyName, "ozkaya")
-                    }
+                    Scopes = new List<string> { "PeopleAPI.read", "PeopleAPI.write" },
+                    ApiSecrets = new List<Secret> { new Secret("ScopeSecret".Sha256()) },
+                    UserClaims = new List<string> { "role" }
                 }
+            };
+
+        public static IEnumerable<Client> Clients =>
+            new Client[]
+            {
+                // m2m client credentials flow client
+                new Client
+                {
+                    ClientId = "m2m.client",
+                    ClientName = "Client Credentials Client",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret("ClientSecret1".Sha256()) },
+                    AllowedScopes = { "PeopleAPI.read", "PeopleAPI.write" }
+                },
+                // interactive client using code flow + pkce
+                new Client
+                {
+                    ClientId = "interactive",
+                    ClientSecrets = { new Secret("ClientSecret1".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = { "https://localhost:5444/signin-oidc" },
+                    FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
+                    PostLogoutRedirectUris = { "https://localhost:5444/signout-callback-oidc" },
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile", "PeopleAPI.read" },
+                    RequirePkce = true,
+                    RequireConsent = true,
+                    AllowPlainTextPkce = false
+                },
             };
     }
 }

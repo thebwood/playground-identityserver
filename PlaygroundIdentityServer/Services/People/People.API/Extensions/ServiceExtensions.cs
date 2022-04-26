@@ -42,7 +42,7 @@ namespace People.API.Extensions
             });
         }
 
-        public static void AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static void AddPersistance(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IPeopleRepository, PeopleRepository>();
             services.AddTransient<IPeopleService, PeopleService>();

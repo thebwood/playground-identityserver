@@ -12,7 +12,7 @@ ServiceExtensions.ConfigureCors(builder.Services, siteCorsPolicy);
 
 
 builder.Services.AddControllers();
-ServiceExtensions.AddDependencyInjection(builder.Services, builder.Configuration);
+ServiceExtensions.AddPersistance(builder.Services, builder.Configuration);
 
 ServiceExtensions.AddAuthenticationsAndAuthorizations(builder.Services);
 
