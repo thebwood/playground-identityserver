@@ -1,15 +1,23 @@
-using IdentityServer.Server.Configuration;
+using IdentityServer.Server;
 using IdentityServer.Server.Data;
-using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+
+var seed = args.Contains("/seed");
+if (seed)
+{
+    args = args.Except(new[] { "/seed" }).ToArray();
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
 var assembly = typeof(Program).Assembly.GetName().Name;
 var defaultConnString = builder.Configuration["Identity"];
 
+if (seed)
+{
+    SeedData.EnsureSeedData(defaultConnString);
+}
 
 builder.Services.AddDbContext<AspNetIdentityDbContext>(options =>
     options.UseSqlServer(defaultConnString,
